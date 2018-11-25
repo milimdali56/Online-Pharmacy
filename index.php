@@ -13,6 +13,10 @@ include("authenticate.php");
 <div class="form">
 <p>Welcome <b><?php echo $_SESSION['username']; ?>!</p></b>
 <h1>You have logged in</h1>
+<p><a href="home.html">Home</a></p>
+<p><a href="products.php">Products</a></p>
+<p><a href="med.html">Medicine</a></p>
+<p><a href="alterMed.html">Alternatives</a></p>
 <p><a href="dashboard.php">Dashboard</a></p>
 <a href="logout.php">Logout</a>
 </div>
