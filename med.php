@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-        <div class="container">
+        <div class="container-fluid">
                 <div class="row">
                 <div class="col-12"><h1>PHARMACY MANAGEMENT SYSTEM</h1></div>
         </div>
@@ -36,16 +36,16 @@
         <div>
                 <ul class="nav justify-content-center">
                         <li class="nav-item">
-                                <a class="nav-link active" href="home.html">Home</a>
+                                <a class="nav-link active" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                                <a class="nav-link" href="#">Drugs</a>
+                                <a class="nav-link" href="products.php">Drugs</a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link" href="#">Pharmacies</a>
                         </li>
                         <li class="nav-item">
                                 <a class="nav-link" href="#">Pharamaceuticals</a>
-                        </li>
-                        <li class="nav-item">
-                                <a class="nav-link" href="#">News</a>
                         </li>
                 </ul>
                 <hr>

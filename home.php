@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Products</title>
-    
+
+<title>Home</title>
+
  <!-- Required meta tags -->
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,7 +17,6 @@
 <link rel="stylesheet" href="css/smstyle.css" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 <body>
         <div class="container-fluid">
@@ -35,9 +33,9 @@
                         <img src="image/19415-200.png" alt="" class="rounded-circle" height="60px" width="60px">
                 </div>
          </div> 
-         <div class="navbar mb-4">
+        <div class="navbar mb-4">
                 <ul class="nav text-center justify-content-center">
-                       <li><a href="home.php"action ="search.php" method="POST">Home</a></li>
+                       <li><a href="home.php">Home</a></li>
                        <li><a href="products.php">Drugs</a>
                            <ul>
                                 <li><a href=#>Disease</a></li>
@@ -49,57 +47,58 @@
                 </ul>
                
         </div>
-        <div class="row">
+     
+                <br>
 <?php
+include('db.php');
 
-$con = mysqli_connect("localhost","root","Madwoman@8");
-
-mysqli_select_db($con,'reg');
-
-// if($con){
-//     echo "done";
-// }else{
-//     echo "not con";
-// }
-
-$query = " SELECT `medID`, `name`, `strength`, `generic_name`, `available_quantity`, `pharma_company`, `price`, `img` FROM `medicine` order by medId asc";
-
-$result = mysqli_query($con, $query);
-
-$rows = mysqli_num_rows($result);
-
-if($rows > 0){
-    while($med = mysqli_fetch_array($result)){
-   ?>
-    <div class= "col-lg-3 col-md-3 col-sm-12 mb-2">
-         <form>
-         <div class="card mb-3" style="width: 18rem;">
-                <img class="medimg mb-2"src ="<?php echo $med['img']; ?>" alt="">
-            <div class="card-body">
-               <a href="med.php"> <h4 class="card-title"><?php echo $med['name'] ;?></h4></a>
-                <h6 class="card-text"> <?php echo $med['pharma_company'] ;?></h6>                            
-                <h4> <img src ="tk.png" alt="" height="15px" width="15px" > <?php echo $med['price'] ;?></h4>            
-                <h6>(<?php echo $med['available_quantity'];?>)</h6>                            
-            </div>
-            <div class="btn d-flex">
-                <a href="#" ><button class="btn btn-dark flex-fill">Buy Now</button></a>                  
-             </div>
-             </div>
-    </div>
-
-<?php
-    }
-}
-
+$q1 = "SELECT count(*) as mednum FROM `medicine`";
+$res = mysqli_query($con,$q1);
+$val = mysqli_fetch_assoc($res);
+$row = $val['mednum'];
 ?>
-</div> 
-<!-- product display end -->
-
-                <footer>
+        <div class="container">
+                <div class="row">
+                        <div class="col mb-4">
+                               <div class="float-left"> <img src="image/itaminas.jpg" alt="" class="rounded-circle" height="100px" width="100px"></div>
+                               <div class="text-center"> <h4 >Number of Medicines</h4>
+                               <h4 > <?php echo $row; ?> <h4>
+                                </div>
+                        </div>
+                        <div class="col mb-4">
+                        <div class="float-left"> <img src="image/images.png" alt="" class="rounded-circle" height="100px" width="100px"> </div>
+                        <div class="text-center"> 
+                                <h4>Generics</h4>  
+                                <h4> <h4>
+                        </div>
+                       
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col mb-2">
+                        <div class="float-left"> <img src="image/1.jpg" alt="" class="rounded-circle" height="100px" width="100px"> </div>
+                        <div class="text-center"> 
+                        <h4>Pharmacies</h4>  
+                        <h4> <h4>
+                        </div>
+                        </div>
+                        <div class="col mb-2">
+                        <div class="float-left"> <img src="image/pharma1.png" alt="" class="rounded-circle" height="100px" width="100px">    </div>                             
+                        <div class="text-center"> 
+                        <h4>Pharamaceuticals</h4>
+                        <h4> <h4>
+                         </div>
+                        </div>
+                </div>
+        </div>
+      
+        <div>
+              <footer>
                       <hr>
                    <div class="footer">
                            footer
                    </div>
-                </footer>  
+              </footer>
+</div>  
 </body>
 </html>
+

@@ -94,7 +94,7 @@ VALUES ('$username', '".md5($password)."', '$email', '$address', '$contactNum', 
     </form>  
   </div>
 </div> -->
-</div>
+<!-- </div> -->
 <?php } ?>
 </body>
 </html>

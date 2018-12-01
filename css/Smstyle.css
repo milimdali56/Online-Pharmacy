@@ -28,14 +28,6 @@ body {
   background-color: #9e8db4;
   padding-top: 20px;
 }
-.pharmanum{
-  text-align: center;
-  height: 150px;
-  width: 50%;
-  border: black;
-  background-color: red;
-  padding-top: 20px;
-}
 /* table */
 table, td, th {    
   border: 1px solid #ddd;
@@ -51,8 +43,8 @@ th, td {
   padding: 15px;
 }
 th{
-  background-color: #444444;
-  color: #D0E4F5;
+  background-color: #a6dace;
+  color: rgb(65, 65, 66);
 }
 /* select options*/
 .select{
@@ -76,5 +68,5 @@ margin-top: 10px;
 
 .footer{
   text-align: center;
-   
+  height: 100px;
 } 

@@ -18,6 +18,7 @@ include("authenticate.php");
 <p><a href="med.html">Medicine</a></p>
 <p><a href="alterMed.html">Alternatives</a></p>
 <p><a href="dashboard.php">Dashboard</a></p>
+<a href="admin.php">admin</a>
 <a href="logout.php">Logout</a>
 </div>
 </body>
