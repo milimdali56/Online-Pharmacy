@@ -21,20 +21,20 @@
 
 </head>
 <body>
-        <div class="container-fluid">
+          <div class="container-fluid mb-4">
                 <div class="row">
                 <div class="col-12"><h1>PHARMACY MANAGEMENT SYSTEM</h1></div>
         </div>
+        <!-- name -->
         <div class="container">
-               <div class="col-sm">
-                        <form action ="search.php" method="POST" class="btn form-inline my-lg-0 col-10">
-                        <input class="form-control badge-pill" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                        <img src="image/av0cc3f7b41cb8510e35c.png" alt="" class="rounded-circle" height="70px" width="70px"> 
-                        <img src="image/19415-200.png" alt="" class="rounded-circle" height="60px" width="60px">
+               <div class="col-sm ">
+                        <form action ="search.php" method="POST" class="my-lg-0 col-12">
+                        <input class="form-control badge-pill col-6 float-left mr-2" name="search" placeholder="Search" aria-label="Search">
+                        <button class="btn my-2 my-sm-0 float-right" type="submit">Search</button>
+                    </form>
                 </div>
          </div> 
+         <!-- search portion -->
          <div class="navbar mb-4">
                 <ul class="nav text-center justify-content-center">
                        <li><a href="home.php"action ="search.php" method="POST">Home</a></li>
@@ -44,17 +44,17 @@
                                 <li><a href=#>Generics</a></li>
                            </ul>
                        </li>
-                       <li><a href=#>Pharmacies</a></li>
-                       <li><a href=#>Pharamaceuticals</a></li>
+                       <li><a href="pharmacy.php">Pharmacies</a></li>
+                       <li><a href="pharmacom.php">Pharamaceuticals</a></li>
                 </ul>
                
         </div>
+        <!--  -->
+        <div class="container">
         <div class="row">
 <?php
 
-$con = mysqli_connect("localhost","root","Madwoman@8");
-
-mysqli_select_db($con,'reg');
+include('db.php');
 
 // if($con){
 //     echo "done";
@@ -62,7 +62,7 @@ mysqli_select_db($con,'reg');
 //     echo "not con";
 // }
 
-$query = " SELECT `medID`, `name`, `strength`, `generic_name`, `available_quantity`, `pharma_company`, `price`, `img` FROM `medicine` order by medId asc";
+$query = " SELECT `medID`, `name`, `strength`, `generic_name`, `pharmainfo`, `pharma_company`, `price`, `img` FROM `medicine` order by medId asc";
 
 $result = mysqli_query($con, $query);
 
@@ -72,18 +72,22 @@ if($rows > 0){
     while($med = mysqli_fetch_array($result)){
    ?>
     <div class= "col-lg-3 col-md-3 col-sm-12 mb-2">
-         <form>
-         <div class="card mb-3" style="width: 18rem;">
+        
+         <div class="card mb-3" style="width: 15rem;">
                 <img class="medimg mb-2"src ="<?php echo $med['img']; ?>" alt="">
-            <div class="card-body">
-               <a href="med.php"> <h4 class="card-title"><?php echo $med['name'] ;?></h4></a>
+            <div class="card-body c text-center">
+               <h4 class="card-title"><?php echo $med['name'] ;  ?></h4>
                 <h6 class="card-text"> <?php echo $med['pharma_company'] ;?></h6>                            
                 <h4> <img src ="tk.png" alt="" height="15px" width="15px" > <?php echo $med['price'] ;?></h4>            
-                <h6>(<?php echo $med['available_quantity'];?>)</h6>                            
+                <!-- <h6>(<?php echo $med['pharmainfo'];?>)</h6>   -->
+                <form action ="med.php" method="POST"> 
+                 <input type="hidden" name="medName" value= "<?php echo $med['name']; ?>">
+                <input type="submit" value="View details">
+                </form>
+        <!-- <a href="med.php"><button class="btn btn-dark" type="submit">View details</button></a> -->
+                                             
             </div>
-            <div class="btn d-flex">
-                <a href="#" ><button class="btn btn-dark flex-fill">Buy Now</button></a>                  
-             </div>
+
              </div>
     </div>
 
@@ -93,13 +97,14 @@ if($rows > 0){
 
 ?>
 </div> 
+</div>
 <!-- product display end -->
 
-                <footer>
-                      <hr>
-                   <div class="footer">
-                           footer
-                   </div>
-                </footer>  
+<footer class=" container-fluid color-light">
+        <hr>
+    <div class="footer">
+        footer
+    </div>
+</footer>  
 </body>
 </html>

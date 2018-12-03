@@ -1,9 +1,13 @@
+<?php
+//have to include authenticate.php file on all secure page
+include("authenticate.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Display</title>
+    <title>Medicines record</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Required meta tags -->
@@ -32,55 +36,88 @@
    <script type="text/javascript" charset="utf8" src="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
 </head>
 <body>
-
- <div class="container">
+<div class="container-fluid mb-4">
+                <div class="row">
+                <div class="col-12"><h1>PHARMACY MANAGEMENT SYSTEM</h1></div>
+        </div>
+        <!-- name -->
+        <div class="container">
+               <div class="col-sm ">
+                        <form action ="search.php" method="POST" class="my-lg-0 col-12">
+                        <input class="form-control badge-pill col-6 float-left mr-2" name="search" placeholder="Search" aria-label="Search">
+                        <button class="btn my-2 my-sm-0 float-right" type="submit">Search</button>
+                    </form>
+                </div>
+         </div> 
+         <!-- search portion -->
+         <div class="navbar mb-4">
+                <ul class="nav text-center justify-content-center">
+                       <li><a href="home.php"action ="search.php" method="POST">Home</a></li>
+                       <li><a href="products.php">Drugs</a>
+                           <ul>
+                                <li><a href=#>Disease</a></li>
+                                <li><a href=#>Generics</a></li>
+                           </ul>
+                       </li>
+                       <li><a href="pharmacy.php">Pharmacies</a></li>
+                       <li><a href="pharmacom.php">Pharamaceuticals</a></li>
+                </ul>
+ </div>
+ <!--  -->
+ <a class="nav-link" href="admin.php"> <button type="button" class="btn btn-secondary btn-lg">Back to admin panels</button></a>
+ <div class="container-fluid">
  <div class="col-lg-12">
-  <br><br>
-  <h1 class="text-warning text-center" > Display Table Data </h1>
+  <h1 class="text-warning text-center" >Medicines record</h1>
   <br>
   <table  id="tabledata" class=" table table-striped table-hover table-bordered">
    
    <tr class="bg-dark text-white text-center">
     
-    <th> Id </th>
+  
     <th> Name </th>
     <th> strength </th>
     <th> generic_name </th>
-    <th> quantity </th>
+    <th> pharma info </th>
     <th> company </th>
     <th> price </th>
     <th> img </th>
     <th> type </th>
     <th> desc </th>
     <th> dis </th>
-
+    <th> Edit </th>
+    <th> Delete </th>
    </tr >
 
  <?php
 
     include('db.php');
 
-    $q = "select * from  medicine";
+    $q = "SELECT * from  medicine";
 
    $query = mysqli_query($con,$q);
 
    while($res = mysqli_fetch_array($query)){
  ?>
    <tr class="text-center">
-    <td> <?php echo $res['id'];  ?> </td>
+   
     <td> <?php echo $res['name'];  ?> </td>
     <td> <?php echo $res['strength'];  ?> </td>
     <td> <?php echo $res['generic_name'];  ?> </td>
-    <td> <?php echo $res['available_quantity'];  ?> </td>
+    <td> <?php echo $res['pharmainfo'];  ?> </td>
     <td> <?php echo $res['pharma_company'];  ?> </td>
     <td> <?php echo $res['price'];  ?> </td>
     <td> <?php echo $res['img'];  ?> </td>
     <td> <?php echo $res['medtype'];  ?> </td>
     <td> <?php echo $res['med_desc'];  ?> </td>
     <td> <?php echo $res['disease'];  ?> </td>
-    <!-- <td> <button class="btn-danger btn"> <a href="delete.php?id=<?php echo $res['id']; ?>" class="text-white"> Delete </a>  </button> </td>
-    <td> <button class="btn-primary btn"> <a href="update.php?id=<?php echo $res['id']; ?>" class="text-white"> Update </a> </button> </td> -->
-
+    <td> <form action ="upd.php" method="POST"> 
+         <input type="hidden" name="name" value= "<?php echo $res['name']; ?>">
+    <input type="submit"  class="btn btn-secondary btn-lg alter" value="Edit">
+    </form></td>
+   <td> <form action ="delete.php" method="POST"> 
+         <input type="hidden" name="name" value= "<?php echo $res['name']; ?>">
+    <input type="submit"  class="btn btn-secondary btn-lg alter" value="Delete">
+    </form></td>
    </tr>
 
   <?php 
@@ -99,6 +136,11 @@
   }) 
   
  </script>
-
+<footer class=" container-fluid color-light">
+        <hr>
+    <div class="footer">
+        footer
+    </div>
+</footer>  
 </body>
 </html>

@@ -32,66 +32,42 @@ require('db.php');
 </head>
 <body>
 
-<div class="container">
+<div class="container-fluid mb-4">
                 <div class="row">
                 <div class="col-12"><h1>PHARMACY MANAGEMENT SYSTEM</h1></div>
         </div>
-        <div class="container-fluid">
-               <div class="col-sm">
-                        <form class="btn form-inline my-lg-0 col-10">
-                        <input class="form-control badge-pill" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                        <a href="logout.php"><img src="image/av0cc3f7b41cb8510e35c.png" alt="" class="rounded-circle" height="70px" width="70px"> </a>
-                        <img src="image/19415-200.png" alt="" class="rounded-circle" height="60px" width="60px">
-                </div>
-        </div> 
+        <!-- name -->
         <div class="container">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light ">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-
-                                <li class="nav-item active">
-                                        <a class="nav-link" href="home.html">Home<span class="sr-only"></span></a>
-                                </li>
-
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Drugs
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Generic</a>
-                                    <a class="dropdown-item" href="#">Disease</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#"></a>
-                                    </div>
-                                </li>
-
-                                <li class="nav-item">
-                                        <a class="nav-link" href="#">Pharmacies</a>
-                                </li>
-
-                                <li class="nav-item">
-                                        <a class="nav-link" href="#">Pharamaceuticals</a>
-                                </li>
-                                        
-                                <li class="nav-item">
-                                        <a class="nav-link" href="#">Add products</a>
-                                </li>
-
-                                <li class="nav-item">
-                                        <a class="nav-link" href="#">Product Request</a>
-                                </li>
-
-                        </ul>
-                    </div>
-                </nav>
+               <div class="col-sm ">
+                        <form action ="search.php" method="POST" class="my-lg-0 col-12">
+                        <input class="form-control badge-pill col-6 float-left mr-2" name="search" placeholder="Search" aria-label="Search">
+                        <button class="btn my-2 my-sm-0 float-right" type="submit">Search</button>
+                    </form>
+                </div>
+         </div> 
+         <!-- search portion -->
+         <div class="navbar mb-4">
+                <ul class="nav text-center justify-content-center">
+                       <li><a href="home.php"action ="search.php" method="POST">Home</a></li>
+                       <li><a href="products.php">Drugs</a>
+                           <ul>
+                                <li><a href=#>Disease</a></li>
+                                <li><a href=#>Generics</a></li>
+                           </ul>
+                       </li>
+                       <li><a href="pharmacy.php">Pharmacies</a></li>
+                       <li><a href="pharmacom.php">Pharamaceuticals</a></li>
+                </ul>
+               
         </div>
+        <!--  -->
 <div class="container">
         <!-- 1st div -->
             <div class="row">
                 <div class="col-3 order-first btn-group-vertical select">
                 <a class="nav-link" href="add.php"> <button type="button" class="btn btn-secondary btn-lg">Add products
+                </button></a>
+                <a class="nav-link" href="display.php"> <button type="button" class="btn btn-secondary btn-lg">Update products
                 </button></a>
                 <a class="nav-link" href="req.php"> <button type="button" class="btn btn-secondary btn-lg">Check Requests
                 </button></a>
@@ -103,7 +79,7 @@ require('db.php');
             <div class="col bd-light ml-5">
    
         <?php
-        $name = $strength = $generic_name = $available_quantity = $pharma_company= "";
+        $name = $strength = $generic_name = $pharmainfo = $pharma_company= "";
         $price = $medtype = $med_desc = $disease ="";
         if(isset($_REQUEST['name'])){
         $name = stripslashes($_REQUEST['name']);
@@ -112,8 +88,8 @@ require('db.php');
 	    $strength = mysqli_real_escape_string($con,$strength); 
         $generic_name = stripslashes($_REQUEST['generic_name']);
 	    $generic_name = mysqli_real_escape_string($con,$generic_name); 
-        $available_quantity = stripslashes($_REQUEST['available_quantity']);
-        $available_quantity = mysqli_real_escape_string($con,$available_quantity); 
+        $pharmainfo = stripslashes($_REQUEST['pharmainfo']);
+        $pharmainfo = mysqli_real_escape_string($con,$pharmainfo); 
         $pharma_company = stripslashes($_REQUEST['pharma_company']);
 	    $pharma_company = mysqli_real_escape_string($con,$pharma_company); 
         $price = stripslashes($_REQUEST['price']);
@@ -128,8 +104,8 @@ require('db.php');
         $disease = mysqli_real_escape_string($con,$disease); 
 
         
-        $query = "INSERT INTO `medicine`(name, strength, generic_name, available_quantity, pharma_company, price,img, medtype, med_desc, disease) 
-        VALUES ('$name','$strength','$generic_name','$available_quantity','$pharma_company','$price','$img','$medtype','$med_desc','$disease')";
+        $query = "INSERT INTO `medicine`(name, strength, generic_name, pharmainfo, pharma_company, price,img, medtype, med_desc, disease) 
+        VALUES ('$name','$strength','$generic_name','$pharmainfo','$pharma_company','$price','$img','$medtype','$med_desc','$disease')";
 
         $result = mysqli_query($con, $query);
         if($result){
@@ -162,8 +138,8 @@ require('db.php');
                 </div>
 
                 <div class="form-group">
-                <label>Available quantity</label>
-                <input type="text" class="form-control" name="available_quantity" placeholder="Enter available quantity">
+                <label>Pharmacy Infornation</label>
+                <input type="text" class="form-control" name="pharmainfo" placeholder="Enter pharmacy info">
                 </div>
 
                 <div class="form-group">

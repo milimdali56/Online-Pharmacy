@@ -1,8 +1,12 @@
+<?php
+//have to include authenticate.php file on all secure page
+include("authenticate.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>Medicine</title>
+<title>Update</title>
 
  <!-- Required meta tags -->
  <meta charset="utf-8">
@@ -48,16 +52,46 @@
                
         </div>
         <!--  -->
+        <a class="nav-link" href="admin.php"> <button type="button" class="btn btn-secondary btn-lg">Back to admin panels</button></a>
+ <div class="container-fluid">
         <?php
 include ('db.php');
-$medName = $_POST['medName'];
+$medName = $_POST['name'];
+?>
+<?php 
+if(isset($_POST['update'])){
+
+    $name = $_POST['name'];
+    $strength = $_POST['strength'];
+    $generic_name = $_POST['generic_name'];
+    $pharmainfo = $_POST['pharmainfo'];
+    $pharma_company = $_POST['pharma_company'];
+    $price = $_POST['price'];
+    $medtype = $_POST['medtype'];
+    $med_desc = $_POST['med_desc'];
+    $disease = $_POST['disease'];
+ 
+   
+        // $insertq = "UPDATE medicine SET name ='$name', strength='$strength', generic_name='$generic_name', pharmainfo ='$pharmainfo', pharma_company='$pharma_company',price='$price', medtype='$medtype',med_desc='$med_desc',disease='$disease'  WHERE name = $name";
+        $i = "UPDATE `medicine` SET `name`='$name',`strength`= '$strength',`generic_name`='$generic_name',`pharmainfo`='$pharmainfo',`pharma_company`='$pharma_company',`price`=$price,`medtype`='$medtype',`med_desc`='$med_desc',`disease`='$disease' WHERE name = '$medName'";
+        $result = mysqli_query($con, $i);
+        
+        if($result){
+                echo "<div class='alert alert-success' role='alert'>
+                <h3>Successfully updated medicine</h3>
+                $medName
+                $price
+                <a href='display.php' class='btn'>Update medicine</a>
+                </div>";
+        }
+    
+}
 ?>
    <div class="container">     
         <div class="nav justify-content-center">
-           <b> <h2>Medicine Info</h2>     </b>        
+           <b> <h2>Edit medicine Info</h2> </b>        
         </div>
-        <div>
-
+        <div>    
 <?php
 $q = " SELECT * FROM `medicine` WHERE name ='$medName' ";
 $result = mysqli_query($con, $q);
@@ -65,33 +99,40 @@ $rows = mysqli_num_rows($result);
 
 if($rows > 0){
     while($med = mysqli_fetch_array($result)){
-   ?>
-            <h3><?php echo $med['name'] ;?></h3>      
-            <b><p class="genname"><?php echo $med['generic_name'] ;?></p></b>
-            <p><?php echo $med['pharma_company'] ;?></p>
-            <p><?php echo $med['strength'] ;?></p>
-            <b><h4 class="price">Price per pack</h4></b>
-            <p><?php echo $med['price'] ;?> tk</p>
-            <form action ="alterMed.php" method="POST"> 
-                 <input type="hidden" name="am" value= "<?php echo $med['generic_name']; ?>">
-                <input type="submit"  class="btn btn-secondary btn-lg alter" value="Simmilar Medicines">
-                </form>
-        </div>
-        <br>
-        <div class="description">
-                <div class="jumbotron">
-                        <h1 class="display-8">Dosage & Administration</h1>
-                        <hr class="my-4">
-                        <p>It is a <b><?php echo $med['medtype'] ;?></b> medicine</p>
-                        <p>Disease :<b> <?php echo $med['disease'] ;?></b></p>
-                        <p><?php echo $med['med_desc'] ;?></p>
-                        <p><?php echo $med['pharmainfo'] ;?></p>
-                       </div> 
-        </div>
+   ?> <form action="upd.php" method="POST" >
+   
+   <tr >
+    <td> Name </td><br>
+    <td><input type="text" name="name" value="<?php echo $med['name'] ;?>"> </td><br>
+    <td> Strength </td><br>
+    <td><input type="text" name="strength" value="<?php echo $med['strength'] ;?>"> </td><br>
+    <td> generic_name </td><br>
+    <td><input type="text" name="generic_name" value="<?php echo $med['generic_name'] ;?>"> </td><br>
+    <td>Pharma Info</td><br>
+    <td><input type="text" name="pharmainfo" value="<?php echo $med['pharmainfo'] ;?>"> </td><br>
+    <td> company </td><br>
+    <td><input type="text" name="pharma_company" value="<?php echo $med['pharma_company'] ;?>"> </td><br>
+    <td> price </td><br>
+    <td><input type="text" name="price" value="<?php echo $med['price'] ;?>"> </td><br>
+    <td> type </td><br>
+    <td><input type="text" name="medtype" value="<?php echo $med['medtype'] ;?>"> </td><br>
+    <td> desc </td><br>
+    <td><input type="text" name="med_desc" value="<?php echo $med['med_desc'] ;?>"> </td><br>
+    <td> dis </td><br>
+    <td><input type="text" name="disease" value="<?php echo $med['disease'] ;?>"> </td><br>
+    <br>
+
+        <tr>
+            <td><input type="hidden" name="name" value=<?php echo $med['name'];?>></td>
+            <td><input type="submit" name="update" value="Update"></td>
+        </tr>
+        </tr>
+      </form>
                <?php
     }
 }
                ?>
+
 
                 
                 

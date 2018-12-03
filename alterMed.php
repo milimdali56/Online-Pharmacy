@@ -20,35 +20,35 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-
-        <div class="container-fluid">
+<div class="container-fluid mb-4">
                 <div class="row">
-                <div class="col-12"><h1>PHARMACY MANAGEMENT SYSTEM</h1></div>                
+                <div class="col-12"><h1>PHARMACY MANAGEMENT SYSTEM</h1></div>
         </div>
+        <!-- name -->
         <div class="container">
-               <div class="col-sm">
-                        <form action ="" method="POST" class="btn form-inline my-lg-0 col-10">
-                        <input class="form-control badge-pill" name="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                        <img src="image/av0cc3f7b41cb8510e35c.png" alt="" class="rounded-circle" height="70px" width="70px"> 
-                        <img src="image/19415-200.png" alt="" class="rounded-circle" height="60px" width="60px">
+               <div class="col-sm ">
+                        <form action ="search.php" method="POST" class="my-lg-0 col-12">
+                        <input class="form-control badge-pill col-6 float-left mr-2" name="search" placeholder="Search" aria-label="Search">
+                        <button class="btn my-2 my-sm-0 float-right" type="submit">Search</button>
+                    </form>
                 </div>
          </div> 
+         <!-- search portion -->
          <div class="navbar mb-4">
                 <ul class="nav text-center justify-content-center">
-                       <li><a href="home.php">Home</a></li>
+                       <li><a href="home.php"action ="search.php" method="POST">Home</a></li>
                        <li><a href="products.php">Drugs</a>
                            <ul>
                                 <li><a href=#>Disease</a></li>
                                 <li><a href=#>Generics</a></li>
                            </ul>
                        </li>
-                       <li><a href=#>Pharmacies</a></li>
-                       <li><a href=#>Pharamaceuticals</a></li>
+                       <li><a href="pharmacy.php">Pharmacies</a></li>
+                       <li><a href="pharmacom.php">Pharamaceuticals</a></li>
                 </ul>
                
         </div>
+        <!--  -->
         <div class="nav justify-content-center">
             <h2>Alternatives</h2>                 
         </div>
@@ -62,7 +62,7 @@
 				<th>Name</th> 
 				<th>Strength</th> 
 				<th>Generic Name</th> 
-				<th>Available quantity</th> 
+				<th>Pharmacy Information</th> 
 				<th>Pharmacy Info</th> 
 				<th>Price (TK / piece)</th> 
 				</tr>
@@ -71,10 +71,10 @@
         <?php
 
                 $con = mysqli_connect("localhost","root","Madwoman@8","reg");
-                if(isset($_POST['search'])){
-                        $s = $_POST['search'];
+                if(isset($_POST['am'])){
+                        $s = $_POST['am'];
 
-                        $q = "SELECT `name`, `strength`, `generic_name`, `available_quantity`, `pharma_company`, `price` FROM `medicine` WHERE generic_name like '%$s%'";
+                        $q = "SELECT `name`, `strength`, `generic_name`, `pharmainfo`, `pharma_company`, `price` FROM `medicine` WHERE generic_name='$s'";
                 }
                 $result = mysqli_query($con, $q);
 
@@ -85,7 +85,7 @@
         <th><?php echo $row->name;?></th> 
         <th><?php echo $row->strength;?></th> 
         <th><?php echo $row->generic_name;?></th> 
-        <th><?php echo $row->available_quantity;?></th> 
+        <th><?php echo $row->pharmainfo;?></th> 
         <th><?php echo $row->pharma_company;?></th> 
         <th><?php echo $row->price;?></th>    
         </tr>

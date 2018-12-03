@@ -23,10 +23,9 @@ and password='".md5($password)."'";
 	$result = mysqli_query($con,$query) or die(mysql_error());
 	$rows = mysqli_num_rows($result);
         if($rows==1){
-	    $_SESSION['username'] = $username;
-            // Redirect user to index.php
-        header('Location:index.php');
-         }else{
+		$_SESSION['username'] = $username;	
+		header('Location:validation.php');		
+	}else{
 	echo "<div class='form'>
 <h3>Username or password is incorrect.</h3>
 <br/>Click here to <a href='login.php'>Login</a></div>";

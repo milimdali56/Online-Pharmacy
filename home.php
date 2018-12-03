@@ -19,36 +19,36 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-        <div class="container-fluid">
+<div class="container-fluid">
+          <div class="container-fluid mb-4">
                 <div class="row">
                 <div class="col-12"><h1>PHARMACY MANAGEMENT SYSTEM</h1></div>
         </div>
+        <!-- name -->
         <div class="container">
-               <div class="col-sm">
-                        <form action ="search.php" method="POST" class="btn form-inline my-lg-0 col-10">
-                        <input class="form-control badge-pill" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                        <img src="image/av0cc3f7b41cb8510e35c.png" alt="" class="rounded-circle" height="70px" width="70px"> 
-                        <img src="image/19415-200.png" alt="" class="rounded-circle" height="60px" width="60px">
+               <div class="col-sm ">
+                        <form action ="search.php" method="POST" class="my-lg-0 col-12">
+                        <input class="form-control badge-pill col-6 float-left mr-2" name="search" placeholder="Search" aria-label="Search">
+                        <button class="btn my-2 my-sm-0 float-right" type="submit">Search</button>
+                    </form>
                 </div>
          </div> 
-        <div class="navbar mb-4">
+         <!-- search portion -->
+         <div class="navbar mb-4">
                 <ul class="nav text-center justify-content-center">
-                       <li><a href="home.php">Home</a></li>
+                       <li><a href="home.php"action ="search.php" method="POST">Home</a></li>
                        <li><a href="products.php">Drugs</a>
                            <ul>
                                 <li><a href=#>Disease</a></li>
                                 <li><a href=#>Generics</a></li>
                            </ul>
                        </li>
-                       <li><a href=#>Pharmacies</a></li>
-                       <li><a href=#>Pharamaceuticals</a></li>
+                       <li><a href="pharmacy.php">Pharmacies</a></li>
+                       <li><a href="pharmacom.php">Pharamaceuticals</a></li>
                 </ul>
                
         </div>
-     
-                <br>
+        <!--  -->
 <?php
 include('db.php');
 
@@ -56,49 +56,93 @@ $q1 = "SELECT count(*) as mednum FROM `medicine`";
 $res = mysqli_query($con,$q1);
 $val = mysqli_fetch_assoc($res);
 $row = $val['mednum'];
+
+$q2 = "SELECT count(*) as pharmanum FROM `pharmacy`";
+$res2 = mysqli_query($con,$q2);
+$val2 = mysqli_fetch_assoc($res2);
+$row2 = $val2['pharmanum'];
+
+$q3 = "SELECT count(*) as comnum FROM `pharmaceuticals`";
+$res3 = mysqli_query($con,$q3);
+$val3 = mysqli_fetch_assoc($res3);
+$row3 = $val3['mednum'];
+
 ?>
+<div class="count">
         <div class="container">
                 <div class="row">
                         <div class="col mb-4">
-                               <div class="float-left"> <img src="image/itaminas.jpg" alt="" class="rounded-circle" height="100px" width="100px"></div>
-                               <div class="text-center"> <h4 >Number of Medicines</h4>
-                               <h4 > <?php echo $row; ?> <h4>
+                                <div class="float-left"> <img src="image/itaminas.jpg" alt="" class="rounded-circle" height="100px" width="100px"></div>
+                                <div class="text-center"> <h4 >Number of Medicines</h4>
+                                <h4 > <?php echo $row; ?> <h4>
                                 </div>
                         </div>
                         <div class="col mb-4">
-                        <div class="float-left"> <img src="image/images.png" alt="" class="rounded-circle" height="100px" width="100px"> </div>
-                        <div class="text-center"> 
-                                <h4>Generics</h4>  
-                                <h4> <h4>
-                        </div>
-                       
-                        </div>
+                                <div class="float-left"> 
+                                <img src="image/images.png" alt="" class="rounded-circle" height="100px" width="100px"> 
+                                </div>
+                                <div class="text-center"> 
+                                        <h4>Generics</h4>  
+                                        <h4> <h4>
+                                </div>
+                       </div>
+
                         <div class="w-100"></div>
+
                         <div class="col mb-2">
-                        <div class="float-left"> <img src="image/1.jpg" alt="" class="rounded-circle" height="100px" width="100px"> </div>
-                        <div class="text-center"> 
-                        <h4>Pharmacies</h4>  
-                        <h4> <h4>
-                        </div>
+                                <div class="float-left"> <img src="image/1.jpg" alt="" class="rounded-circle" height="100px" width="100px"> </div>
+                                <div class="text-center"> 
+                                <h4>Pharmacies</h4>  
+                                <h4><h4 > <?php echo $row2; ?> <h4> <h4>
+                                </div>
                         </div>
                         <div class="col mb-2">
-                        <div class="float-left"> <img src="image/pharma1.png" alt="" class="rounded-circle" height="100px" width="100px">    </div>                             
-                        <div class="text-center"> 
-                        <h4>Pharamaceuticals</h4>
-                        <h4> <h4>
-                         </div>
+                                <div class="float-left"> <img src="image/pharma1.png" alt="" class="rounded-circle" height="100px" width="100px">    </div>                             
+                                <div class="text-center"> 
+                                <h4>Pharamaceuticals</h4>
+                                <h4><h4 > <?php echo $row3; ?> <h4> <h4>
+                                </div>
                         </div>
                 </div>
         </div>
-      
-        <div>
-              <footer>
-                      <hr>
-                   <div class="footer">
-                           footer
-                   </div>
-              </footer>
-</div>  
+</div>
+
+<!-- about section -->
+	<div class="px-lg-4 px-3">
+	        <div class="py-lg-5 py-3">
+		        <div class="row">
+                                <div class="col-lg-6 p-0">
+					<img src="image/pharma2.png" alt="" class="img-fluid">
+				</div>
+			        <div class="col-lg-6">
+                                        <h3 class="text-left mb-lg-5 mb-3">About Us</h3>
+                                        <hr>
+						<p class="my-xl-4 my-lg-3 my-md-4 my-3">
+                                                        brief about the site
+                                                </p>
+                                <a href="products.php" class="btn btn-sm animated-button gibson-three mt-4">See what we offer</a>
+                        </div>
+                </div>
+        </div>
+
+<div class="card text-center">
+        <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text">If you want to increse your pharmacy business register today.</p>
+        </div>
+
+        <div class=" reg card-footer text-muted ">
+        <a href="registration.php" class="btn"> REGISTER NOW </a> or
+        <a href="login.php" class="btn">Login</a>
+        </div>
+</div>
+
+<footer class=" container-fluid color-light">
+        <hr>
+    <div class="footer">
+        footer
+    </div>
+</footer> 
 </body>
 </html>
 

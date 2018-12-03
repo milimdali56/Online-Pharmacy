@@ -7,7 +7,7 @@ include("authenticate.php");
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin Panel</title>
+    <title>Pharamay Requests</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Required meta tags -->
@@ -57,36 +57,55 @@ include("authenticate.php");
                 </ul>
                
         </div>
-        <!--  --> 
-        <h1 class="justify-content-center">Welcome <b><?php echo $_SESSION['username']; ?> !</h1></b>
-        <a class="btn"href="logout.php">Logout</a>
-       
-        <br>
-      
-        <div class="container">
-        <!-- 1st div -->
-            <div class="row">
-                <div class="col-3 order-first btn-group-vertical select">
-                <a class="nav-link" href="add.php"> <button type="button" class="btn btn-secondary btn-lg">Add products
-                </button></a>
-                <a class="nav-link" href="display.php"> <button type="button" class="btn btn-secondary btn-lg">Update products
-                </button></a>
-                <a class="nav-link" href="pharmareq.php"> <button type="button" class="btn btn-secondary btn-lg">Check Requests
-                </button></a>
-                <!-- <a class="nav-link" href="admin.php"> <button type="button" class="btn btn-secondary btn-lg">Admin Panel
-                </button></a> -->
-                </div>
+        <!--  -->
+        <a class="nav-link" href="admin.php"> <button type="button" class="btn btn-secondary btn-lg">Back to admin panels</button></a>
 
-        <!-- 2st div -->            
-            <div class="col bd-light ml-5">
-                <div class="text-center bg">
-                        <h2>Welcome to Admin Pannel</h2>
-                </div>
+<div class="container">
+    <div class="row">
+    <?php
+
+include('db.php');
+
+// if($con){
+//     echo "done";
+// }else{
+//     echo "not con";
+// }
+
+$query = " SELECT * FROM `pharmacy` order by id asc";
+
+$result = mysqli_query($con, $query);
+
+$rows = mysqli_num_rows($result);
+
+if($rows > 0){
+    while($med = mysqli_fetch_array($result)){
+   ?>
+    <div class= "card">
+        
+         <div class="card-header">
+         <h4 class="card-title"><?php echo $med['id'] ;  ?>. <?php echo $med['name'] ;  ?><br>
+         <?php echo $med['address'] ;?><br>
+         <?php echo $med['phone_num'];?><br>
+         </h4>
+           <div class="card-body c text-center">
+              
+                <h6 class="card-text"> <?php echo $med['info'] ;?></h6>                            
+                                                            
             </div>
-        </div>     
 
+             </div>
+    </div>
 
-                <footer>
+<?php
+    }
+}
+
+?>
+    </div>
+</div>
+
+        <footer>
                       <hr>
                    <div class="footer">
                            footer
