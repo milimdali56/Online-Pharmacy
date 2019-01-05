@@ -45,7 +45,7 @@ include("authenticate.php");
          <!-- search portion -->
          <div class="navbar mb-4">
                 <ul class="nav text-center justify-content-center">
-                       <li><a href="home.php"action ="search.php" method="POST">Home</a></li>
+                       <li><a href="index.php"action ="search.php" method="POST">Home</a></li>
                        <li><a href="products.php">Drugs</a>
                            <ul>
                                 <li><a href=#>Disease</a></li>
@@ -72,6 +72,8 @@ include("authenticate.php");
                 <a class="nav-link" href="display.php"> <button type="button" class="btn btn-secondary btn-lg">Update products
                 </button></a>
                 <a class="nav-link" href="pharmareq.php"> <button type="button" class="btn btn-secondary btn-lg">Check Requests
+                </button></a>
+                <a class="nav-link" href="req.php"> <button type="button" class="btn btn-secondary btn-lg">Make Requests
                 </button></a>
                 <!-- <a class="nav-link" href="admin.php"> <button type="button" class="btn btn-secondary btn-lg">Admin Panel
                 </button></a> -->

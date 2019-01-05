@@ -48,7 +48,7 @@ require('db.php');
          <!-- search portion -->
          <div class="navbar mb-4">
                 <ul class="nav text-center justify-content-center">
-                       <li><a href="home.php"action ="search.php" method="POST">Home</a></li>
+                       <li><a href="index.php"action ="search.php" method="POST">Home</a></li>
                        <li><a href="products.php">Drugs</a>
                            <ul>
                                 <li><a href=#>Disease</a></li>

@@ -52,7 +52,7 @@ include("authenticate.php");
          <!-- search portion -->
          <div class="navbar mb-4">
                 <ul class="nav text-center justify-content-center">
-                       <li><a href="home.php"action ="search.php" method="POST">Home</a></li>
+                       <li><a href="index.php"action ="search.php" method="POST">Home</a></li>
                        <li><a href="products.php">Drugs</a>
                            <ul>
                                 <li><a href=#>Disease</a></li>
@@ -75,15 +75,15 @@ include("authenticate.php");
     
   
     <th> Name </th>
-    <th> strength </th>
-    <th> generic_name </th>
-    <th> pharma info </th>
-    <th> company </th>
-    <th> price </th>
-    <th> img </th>
-    <th> type </th>
-    <th> desc </th>
-    <th> dis </th>
+    <th> Strength </th>
+    <th> Generic name </th>
+    <th> Pharmacy info </th>
+    <th> Company </th>
+    <th> Price </th>
+    <!-- <th> img </th> -->
+    <th> Type </th>
+    <th> Description </th>
+    <th> Disease </th>
     <th> Edit </th>
     <th> Delete </th>
    </tr >
@@ -106,7 +106,7 @@ include("authenticate.php");
     <td> <?php echo $res['pharmainfo'];  ?> </td>
     <td> <?php echo $res['pharma_company'];  ?> </td>
     <td> <?php echo $res['price'];  ?> </td>
-    <td> <?php echo $res['img'];  ?> </td>
+    <!-- <td> <?php echo $res['img'];  ?> </td> -->
     <td> <?php echo $res['medtype'];  ?> </td>
     <td> <?php echo $res['med_desc'];  ?> </td>
     <td> <?php echo $res['disease'];  ?> </td>
